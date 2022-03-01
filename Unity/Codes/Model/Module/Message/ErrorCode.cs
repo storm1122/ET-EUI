@@ -13,5 +13,14 @@ namespace ET
         // 这里配置逻辑层的错误码
         // 110000 - 200000是抛异常的错误
         // 200001以上不抛异常
+
+        public const int ERR_NetWorkError = 200002;
+        public const int ERR_LoginInfoError = 200003;
+        public const int ERR_RequestRepeatedly = 200004;
+        public const int ERR_TokenError = 200009;
+        public const int ERR_RoleNameIsNull = 200010;
+        public const int ERR_RoleNameSame = 200011;
+        public const int ERR_DeleteRoleIsNull = 200012;     //要删除的角色不存在
+
     }
 }
