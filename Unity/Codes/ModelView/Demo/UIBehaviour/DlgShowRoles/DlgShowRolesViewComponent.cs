@@ -73,6 +73,40 @@ namespace ET
      		}
      	}
 
+		public UnityEngine.UI.Button E_BtnEnterGameButton
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_BtnEnterGameButton == null )
+     			{
+		    		this.m_E_BtnEnterGameButton = UIFindHelper.FindDeepChild<UnityEngine.UI.Button>(this.uiTransform.gameObject,"E_BtnEnterGame");
+     			}
+     			return this.m_E_BtnEnterGameButton;
+     		}
+     	}
+
+		public UnityEngine.UI.Image E_BtnEnterGameImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_BtnEnterGameImage == null )
+     			{
+		    		this.m_E_BtnEnterGameImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"E_BtnEnterGame");
+     			}
+     			return this.m_E_BtnEnterGameImage;
+     		}
+     	}
+
 		public UnityEngine.UI.LoopHorizontalScrollRect E_RolesLoopHorizontalScrollRect
      	{
      		get
@@ -96,6 +130,8 @@ namespace ET
 			this.m_E_BtnCreateImage = null;
 			this.m_E_BtnDeleteButton = null;
 			this.m_E_BtnDeleteImage = null;
+			this.m_E_BtnEnterGameButton = null;
+			this.m_E_BtnEnterGameImage = null;
 			this.m_E_RolesLoopHorizontalScrollRect = null;
 			this.uiTransform = null;
 		}
@@ -104,6 +140,8 @@ namespace ET
 		private UnityEngine.UI.Image m_E_BtnCreateImage = null;
 		private UnityEngine.UI.Button m_E_BtnDeleteButton = null;
 		private UnityEngine.UI.Image m_E_BtnDeleteImage = null;
+		private UnityEngine.UI.Button m_E_BtnEnterGameButton = null;
+		private UnityEngine.UI.Image m_E_BtnEnterGameImage = null;
 		private UnityEngine.UI.LoopHorizontalScrollRect m_E_RolesLoopHorizontalScrollRect = null;
 		public Transform uiTransform = null;
 	}

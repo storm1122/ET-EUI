@@ -18,6 +18,7 @@ namespace ET
 			});
 			self.View.E_BtnCreateButton.AddListenerAsync(() => { return self.OnBtnCreateClickHandle(); });
 			self.View.E_BtnDeleteButton.AddListenerAsync(() => { return self.OnBtnDeleteClickHandle(); });
+			self.View.E_BtnEnterGameButton.AddListenerAsync(() => { return self.OnBtnConfirmClickHandler(); });
 		}
 
 		public static void ShowWindow(this DlgShowRoles self, Entity contextData = null)
@@ -94,6 +95,41 @@ namespace ET
 			
 			self.RefreshRoleItems();
 			await Task.CompletedTask;
+		}
+
+		public static async ETTask OnBtnConfirmClickHandler(this DlgShowRoles self)
+		{
+			if (self.ZoneScene().GetComponent<RoleInfosComponent>().CurrentRoleId == 0)
+			{
+				Log.Error("需要选择一个角色");
+				return;
+			}
+
+			try
+			{
+				int errorCode = await LoginHelper.GetRealmKey(self.ZoneScene());
+				if (errorCode != ErrorCode.ERR_Success)
+				{
+					Log.Error(errorCode.ToString());
+					return;
+				}
+				
+				errorCode = await LoginHelper.EnterGame(self.ZoneScene());
+				if (errorCode != ErrorCode.ERR_Success)
+				{
+					Log.Error(errorCode.ToString());
+					return;
+				}
+				
+				
+			}
+			catch (Exception e)
+			{
+				Log.Error(e.ToString());
+				return;
+			}
+
+			await ETTask.CompletedTask;
 		}
 	}
 }
