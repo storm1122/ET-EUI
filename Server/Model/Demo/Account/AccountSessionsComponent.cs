@@ -2,8 +2,8 @@
 
 namespace ET
 {
-    public class AccountSessionsComponent: Entity, IAwake,IDestroy
+    public class AccountSessionsComponent : Entity,IAwake,IDestroy
     {
-        public Dictionary<long, long> AccountSessionDic = new Dictionary<long, long>();
+        public Dictionary<long, long> AccountSessionDictionary = new Dictionary<long, long>();
     }
 }

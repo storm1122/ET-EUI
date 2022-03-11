@@ -1,6 +1,7 @@
 ﻿namespace ET
 {
-    public class AccountInfoComponentDestroySystem : DestroySystem<AccountInfoComponent>
+    
+    public class AccountInfoComponentDetroySystem: DestroySystem<AccountInfoComponent>
     {
         public override void Destroy(AccountInfoComponent self)
         {

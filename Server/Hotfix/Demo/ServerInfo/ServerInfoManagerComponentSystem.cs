@@ -1,6 +1,7 @@
 ﻿namespace ET
 {
-    public class ServerInfoManagerComponentAwakeSystem: AwakeSystem<ServerInfoManagerComponent>
+    
+    public class ServerInfoManagerComponentAwakeSystem : AwakeSystem<ServerInfoManagerComponent>
     {
         public override void Awake(ServerInfoManagerComponent self)
         {
@@ -8,7 +9,7 @@
         }
     }
     
-    public class ServerInfoManagerComponentDestorySystem : DestroySystem<ServerInfoManagerComponent>
+    public class ServerInfoManagerComponentDestroySystem : DestroySystem<ServerInfoManagerComponent>
     {
         public override void Destroy(ServerInfoManagerComponent self)
         {
@@ -19,8 +20,8 @@
             self.ServerInfos.Clear();
         }
     }
-
-    public class ServerInfoManagerComponentLoadSystem: LoadSystem<ServerInfoManagerComponent>
+    
+    public class ServerInfoManagerComponentLoadSystem : LoadSystem<ServerInfoManagerComponent>
     {
         public override void Load(ServerInfoManagerComponent self)
         {
@@ -36,7 +37,7 @@
 
             if (serverInfoList == null || serverInfoList.Count <= 0)
             {
-                Log.Error("serverinfo count is zero");
+                Log.Error("serverInfo  count is zero");
                 self.ServerInfos.Clear();
                 var serverInfoConfigs = ServerInfoConfigCategory.Instance.GetAll();
 
@@ -44,14 +45,13 @@
                 {
                     ServerInfo newServerInfo = self.AddChildWithId<ServerInfo>(info.Id);
                     newServerInfo.ServerName = info.ServerName;
-                    newServerInfo.Status = (int) ServerStatus.Normal;
+                    newServerInfo.Status = (int)ServerStatus.Normal;
                     self.ServerInfos.Add(newServerInfo);
                     await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Save(newServerInfo);
                 }
-                
+
                 return;
             }
-            
             self.ServerInfos.Clear();
 
             foreach (var serverInfo in serverInfoList)
@@ -60,9 +60,8 @@
                 self.ServerInfos.Add(serverInfo);
             }
             
-            
-            
             await ETTask.CompletedTask;
         }
+        
     }
 }

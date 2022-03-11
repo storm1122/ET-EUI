@@ -18,7 +18,7 @@ namespace ET
         public override void Destroy(UIEventComponent self)
         {
             self.UIEventHandlers.Clear();
-            self.IsClick = false;
+            self.IsClicked = false;
             UIEventComponent.Instance = null;
         }
     }
@@ -48,7 +48,8 @@ namespace ET
 
         public static void SetUIClicked(this UIEventComponent self, bool isClicked)
         {
-            self.IsClick = isClicked;
+            self.IsClicked = isClicked;
         }
+        
     }
 }

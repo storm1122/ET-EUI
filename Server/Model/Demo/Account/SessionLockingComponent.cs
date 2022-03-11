@@ -1,6 +1,6 @@
 ﻿namespace ET
 {
-    public class SessionLockingComponent: Entity, IAwake
+    public class SessionLockingComponent : Entity,IAwake
     {
         
     }

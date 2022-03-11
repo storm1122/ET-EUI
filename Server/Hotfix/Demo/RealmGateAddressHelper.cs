@@ -5,7 +5,7 @@ namespace ET
 {
 	public static class RealmGateAddressHelper
 	{
-		public static StartSceneConfig GetGate(int zone , long accountId)
+		public static StartSceneConfig GetGate(int zone,long accountId)
 		{
 			List<StartSceneConfig> zoneGates = StartSceneConfigCategory.Instance.Gates[zone];
 
@@ -13,7 +13,8 @@ namespace ET
 
 			return zoneGates[n];
 		}
-
+		
+		
 		public static StartSceneConfig GetRealm(int zone)
 		{
 			StartSceneConfig zoneRealm = StartSceneConfigCategory.Instance.Realms[zone];

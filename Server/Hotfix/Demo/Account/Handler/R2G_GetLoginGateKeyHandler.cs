@@ -13,13 +13,12 @@ namespace ET
                 reply();
                 return;
             }
-
-            string key = RandomHelper.RandInt64().ToString() + TimeHelper.ServerNow().ToString();
+            
+            string key     =  RandomHelper.RandInt64().ToString() + TimeHelper.ServerNow().ToString();
             scene.GetComponent<GateSessionKeyComponent>().Remove(request.AccountId);
-            scene.GetComponent<GateSessionKeyComponent>().Add(request.AccountId , key);
-            response.GateSeesionKey = key;
+            scene.GetComponent<GateSessionKeyComponent>().Add(request.AccountId, key);
+            response.GateSessionKey = key;
             reply();
-
             await ETTask.CompletedTask;
         }
     }

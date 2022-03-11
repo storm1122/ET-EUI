@@ -655,10 +655,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(A2C_GetRole))]
-	[Message(OuterOpcode.C2A_GetRole)]
+	[ResponseType(nameof(A2C_GetRoles))]
+	[Message(OuterOpcode.C2A_GetRoles)]
 	[ProtoContract]
-	public partial class C2A_GetRole: Object, IRequest
+	public partial class C2A_GetRoles: Object, IRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -669,14 +669,14 @@ namespace ET
 		[ProtoMember(2)]
 		public long AccountId { get; set; }
 
-		[ProtoMember(4)]
+		[ProtoMember(3)]
 		public int ServerId { get; set; }
 
 	}
 
-	[Message(OuterOpcode.A2C_GetRole)]
+	[Message(OuterOpcode.A2C_GetRoles)]
 	[ProtoContract]
-	public partial class A2C_GetRole: Object, IResponse
+	public partial class A2C_GetRoles: Object, IResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -688,7 +688,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public List<RoleInfoProto> RoleinfosList = new List<RoleInfoProto>();
+		public List<RoleInfoProto> RoleInfo = new List<RoleInfoProto>();
 
 	}
 
@@ -728,7 +728,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public long DeleteRoleInfoId { get; set; }
+		public long DeletedRoleInfoId { get; set; }
 
 	}
 
@@ -851,7 +851,7 @@ namespace ET
 	[ProtoContract]
 	public partial class C2G_EnterGame: Object, IRequest
 	{
-		[ProtoMember(90)]
+		[ProtoMember(1)]
 		public int RpcId { get; set; }
 
 	}
@@ -860,16 +860,17 @@ namespace ET
 	[ProtoContract]
 	public partial class G2C_EnterGame: Object, IResponse
 	{
-		[ProtoMember(90)]
+		[ProtoMember(1)]
 		public int RpcId { get; set; }
 
-		[ProtoMember(91)]
+		[ProtoMember(2)]
 		public int Error { get; set; }
 
-		[ProtoMember(92)]
+		[ProtoMember(3)]
 		public string Message { get; set; }
 
-		[ProtoMember(1)]
+// 自己unitId
+		[ProtoMember(4)]
 		public long MyId { get; set; }
 
 	}

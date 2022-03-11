@@ -1,11 +1,12 @@
 ﻿namespace ET
 {
-
-    public class LoginInfoRecordComponentDestroySystem: DestroySystem<LoginInfoRecordComponent>
+    
+    
+    public class LoginInfoRecordComponentDestroySystem : DestroySystem<LoginInfoRecordComponent>
     {
         public override void Destroy(LoginInfoRecordComponent self)
         {
-            self.AccountLoginInfoDic.Clear();
+            self.AccountLoginInfoDict.Clear();
         }
     }
 
@@ -13,34 +14,35 @@
     {
         public static void Add(this LoginInfoRecordComponent self, long key, int value)
         {
-            if (self.AccountLoginInfoDic.ContainsKey(key))
+            if (self.AccountLoginInfoDict.ContainsKey(key))
             {
-                self.AccountLoginInfoDic[key] = value;
+                self.AccountLoginInfoDict[key] = value;
                 return;
             }
-            self.AccountLoginInfoDic.Add(key , value);
+            self.AccountLoginInfoDict.Add(key,value);
+        }
+
+        public static void Remove(this LoginInfoRecordComponent self, long key)
+        {
+            if (self.AccountLoginInfoDict.ContainsKey(key))
+            {
+                self.AccountLoginInfoDict.Remove(key);
+            }
         }
 
         public static int Get(this LoginInfoRecordComponent self, long key)
         {
-            if (!self.AccountLoginInfoDic.TryGetValue(key, out int value))
+            if (!self.AccountLoginInfoDict.TryGetValue(key,out int value))
             {
                 return -1;
             }
+            
             return value;
-        }
-        
-        public static void  Remove(this LoginInfoRecordComponent self, long key)
-        {
-            if (self.AccountLoginInfoDic.ContainsKey(key))
-            {
-                self.AccountLoginInfoDic.Remove(key);
-            }
         }
 
         public static bool IsExist(this LoginInfoRecordComponent self, long key)
         {
-            return self.AccountLoginInfoDic.ContainsKey(key);
+            return self.AccountLoginInfoDict.ContainsKey(key);
         }
     }
 }

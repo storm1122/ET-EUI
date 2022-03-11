@@ -11,7 +11,8 @@
 
         public static ServerInfoProto ToMessage(this ServerInfo self)
         {
-            return new ServerInfoProto() { Id = (int) self.Id, ServerName = self.ServerName, Status = self.Status };
+            return new ServerInfoProto() { Id = (int)self.Id, ServerName = self.ServerName, Status = self.Status };
         }
+        
     }
 }

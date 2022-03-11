@@ -439,7 +439,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public string GateSeesionKey { get; set; }
+		public string GateSessionKey { get; set; }
 
 	}
 

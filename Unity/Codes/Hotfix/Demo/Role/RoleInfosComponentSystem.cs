@@ -1,5 +1,6 @@
 ﻿namespace ET
 {
+
     public class RoleInfosComponentDestroySystem: DestroySystem<RoleInfosComponent>
     {
         public override void Destroy(RoleInfosComponent self)
@@ -15,10 +16,7 @@
 
     public static class RoleInfosComponentSystem
     {
-        public static void Add(this RoleInfosComponent self, RoleInfo roleInfo)
-        {
-            self.RoleInfos.Add(roleInfo);
-        }
+        
         
     }
 }

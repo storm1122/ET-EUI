@@ -18,18 +18,17 @@
                 return;
             }
             self.Dispose();
-
+            
         }
-
-        public static async ETTask KickPlayer(Player player, bool isException = false)
+        
+        public static async ETTask KickPlayer(Player player,bool isException = false)
         {
             if (player == null || player.IsDisposed)
             {
                 return;
             }
-
             long instanceId = player.InstanceId;
-            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, player.Account.GetHashCode()))
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, player.AccountId.GetHashCode()))
             {
                 if (player.IsDisposed || instanceId != player.InstanceId)
                 {
@@ -46,20 +45,20 @@
                             break;
                         case PlayerState.Game:
                             //通知游戏逻辑服下线Unit角色逻辑，并将数据存入数据库
-                            var m2gRequestExitGame =
-                                    (M2G_RequestExitGame) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestExitGame());
-                            
-                            //通知溢出账号角色登录信息
-                            long loginCenterConfigSceneId = StartSceneConfigCategory.Instance.LoginCenterConfig.InstanceId;
-                            var l2G_RemoveLoginRecord = (L2G_RemoveLoginRecord) await MessageHelper.CallActor(loginCenterConfigSceneId,
-                                new G2L_RemoveLoginRecord() { AccountId = player.Account, ServerId = player.DomainZone() });
-                            
+                            var m2GRequestExitGame = (M2G_RequestExitGame)await MessageHelper.CallLocationActor(player.UnitId,new G2M_RequestExitGame());
+
+                            //通知移除账号角色登录信息
+                            long LoginCenterConfigSceneId = StartSceneConfigCategory.Instance.LoginCenterConfig.InstanceId;
+                            var L2G_RemoveLoginRecord     =   (L2G_RemoveLoginRecord) await MessageHelper.CallActor(LoginCenterConfigSceneId, new G2L_RemoveLoginRecord()
+                                                            {
+                                                                AccountId = player.AccountId,ServerId = player.DomainZone()
+                                                            });
                             break;
                     }
                 }
-          
+                
                 player.PlayerState = PlayerState.Disconnect;
-                player.DomainScene().GetComponent<PlayerComponent>()?.Remove(player.Account);
+                player.DomainScene().GetComponent<PlayerComponent>()?.Remove(player.AccountId);
                 player?.Dispose();
                 await TimerComponent.Instance.WaitAsync(300);
             }

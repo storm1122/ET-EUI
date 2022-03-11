@@ -2,8 +2,8 @@
 
 namespace ET
 {
-    public class LoginInfoRecordComponent : Entity, IAwake, IDestroy
+    public class LoginInfoRecordComponent : Entity,IAwake,IDestroy
     {
-        public Dictionary<long, int> AccountLoginInfoDic = new Dictionary<long, int>();
+        public Dictionary<long, int> AccountLoginInfoDict = new Dictionary<long, int>();
     }
 }

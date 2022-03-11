@@ -1,6 +1,5 @@
 
 
-
 using System.Net;
 
 namespace ET
@@ -34,6 +33,7 @@ namespace ET
                 case SceneType.Map:
                     scene.AddComponent<UnitComponent>();
                     scene.AddComponent<AOIManagerComponent>();
+                  
                     break;
                 case SceneType.Location:
                     scene.AddComponent<LocationComponent>();
@@ -47,6 +47,8 @@ namespace ET
                 case SceneType.LoginCenter:
                     scene.AddComponent<LoginInfoRecordComponent>();
                     break;
+                
+                
             }
 
             return scene;

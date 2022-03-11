@@ -23,7 +23,7 @@
                 AccountId = self.AccountId,
                 CreateTime = self.CreateTime,
                 ServerId = self.ServerId,
-                LastLoginTime = self.LastLoginTime,
+                LastLoginTime = self.LastLoginTime
             };
         }
     }
